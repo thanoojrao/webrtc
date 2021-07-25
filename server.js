@@ -6,7 +6,7 @@ const routes = require('./db_queries')
 const pgStore = require('connect-pg-simple')(session)
 const {PeerServer} = require('peer')
 
-const peerServer = new PeerServer({port:3000,path:'/peerjs'})
+const peerServer = new PeerServer({port:3000,path:'/'})
 
 const app = express()
 const server = require('http').Server(app)
