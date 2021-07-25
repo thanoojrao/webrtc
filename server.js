@@ -4,7 +4,6 @@ const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const routes = require('./db_queries')
 const pgStore = require('connect-pg-simple')(session)
-const { ExpressPeerServer } = require('peer')
 
 
 
@@ -13,6 +12,7 @@ const { ExpressPeerServer } = require('peer')
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
+const { ExpressPeerServer } = require('peer')
 const dbUrl = process.env.DATABASE_URL
 app.set('view engine', 'pug')
 app.use(express.static('public'))
@@ -26,7 +26,7 @@ app.use(session({secret:"aKsrfghjkacvbnhg",
 
 const peerServer = ExpressPeerServer(server, {
   debug: true,
-  path: '/'
+  path: '/myapp'
 })
 app.use('/peerjs', peerServer)
 
