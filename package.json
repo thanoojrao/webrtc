@@ -24,6 +24,7 @@
     "firebase-admin": "^9.11.0",
     "helmet": "^4.6.0",
     "morgan": "^1.10.0",
+    "peer": "^0.6.1",
     "pg": "^8.6.0",
     "pug": "^3.0.2",
     "serve-favicon": "^2.5.0",
