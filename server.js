@@ -5,16 +5,17 @@ const morgan = require('morgan')
 const routes = require('./db_queries')
 const pgStore = require('connect-pg-simple')(session)
 
-const { PeerServer } = require('peer');
+const { ExpressPeerServer } = require('peer');
 
 const peerServer = PeerServer({ port: 80, path: '/myapp' });
 
-
+const peerServer = ExpressPeerServer(server, {
+  path: '/myapp'
+});
 
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
-const { ExpressPeerServer } = require('peer')
 const dbUrl = process.env.DATABASE_URL
 app.set('view engine', 'pug')
 app.use(express.static('public'))
@@ -25,6 +26,7 @@ app.use(session({secret:"aKsrfghjkacvbnhg",
                  store: new pgStore({pool:routes.pool}),
                  resave:true,
                 saveUninitialized:true}))
+app.use('/peerjs', peerServer);
 
 
 
