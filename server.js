@@ -1,6 +1,7 @@
 const express = require('express')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
+const morgan = require('morgan')
 const routes = require('./db_queries')
 
 
@@ -12,6 +13,7 @@ const io = require('socket.io')(server)
 app.set('view engine', 'pug')
 app.use(express.static('public'))
 app.use(express.json())
+app.use(morgan('common'))
 app.use(express.urlencoded({extended:true,}))
 app.use(cookieParser())
 app.use(session({secret:"aKsrfghjkacvbnhg",
