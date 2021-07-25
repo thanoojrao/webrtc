@@ -5,9 +5,11 @@ const Pool = require('pg').Pool
 
 dotenv.config()
 
-DB_URL=process.env.DATABASE_URL
 const pool = new Pool({
-    DB_URL,
+    connectionString:process.env.DATABASE_URL,
+    ssl:{
+        rejectUnauthorized:false
+    }
 })
 
 const addUser = (req,res)=>{
