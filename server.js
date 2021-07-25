@@ -22,10 +22,10 @@ app.use(session({secret:"aKsrfghjkacvbnhg",
                  store: new pgStore({pool:routes.pool}),
                  resave:true,
                 saveUninitialized:true}))
-const peerServer = ExpressPeerServer(io, {
+const peerServer = ExpressPeerServer(server, {
         path: '/myapp'
       })
-app.use('/peerjs', peerServer);
+io.use('/peerjs', peerServer);
 
 
 
