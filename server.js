@@ -3,21 +3,20 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const routes = require('./db_queries')
-
+const pgStore = require('connect-pg-simple')(session)
 
 
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
-
+const dbUrl = process.env.DATABASE_URL
 app.set('view engine', 'pug')
 app.use(express.static('public'))
 app.use(express.json())
-app.use(morgan('common'))
 app.use(express.urlencoded({extended:true,}))
 app.use(cookieParser())
 app.use(session({secret:"aKsrfghjkacvbnhg",
-                 store: new (require('connect-pg-simple')(session))(),
+                 store: new pgStore({conString:'postgres://webrtc:12345678@localhost:5432/webrtc'}),
                  resave:true,
                 saveUninitialized:true}))
 
