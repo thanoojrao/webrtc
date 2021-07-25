@@ -53,4 +53,4 @@ io.on('connection', socket => {
   })
 })
 
-server.listen(3000)
+app.listen(3000)
