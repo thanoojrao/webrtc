@@ -5,7 +5,9 @@ const morgan = require('morgan')
 const routes = require('./db_queries')
 const pgStore = require('connect-pg-simple')(session)
 
+const { PeerServer } = require('peer');
 
+const peerServer = PeerServer({ port: 80, path: '/myapp' });
 
 
 
@@ -24,11 +26,7 @@ app.use(session({secret:"aKsrfghjkacvbnhg",
                  resave:true,
                 saveUninitialized:true}))
 
-const peerServer = ExpressPeerServer(server, {
-  debug: true,
-  path: '/'
-})
-app.use('/', peerServer)
+
 
 app.get('/createRoom',routes.createRoom)
 app.get('/',routes.checkSignIn,(req,res,next)=>{
