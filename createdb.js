@@ -3,11 +3,10 @@ const dotenv = require('dotenv')
 dotenv.config()
 console.log(process.env.DATABASE_URL)
 const pool = new Pool({
-    user: process.env.DATABASE_USER,
-    host: process.env.DATABASE_HOST,
-    database: process.env.DATABASE_NAME,
-    password: process.env.DATABASE_PASSWORD,
-    port: Number(process.env.DATABASE_PORT),
+    connectionString:process.env.DATABASE_URL,
+    ssl:{
+        rejectUnauthorized:false
+    }
 })
 
 pool.query('CREATE TABLE USERS(ID SERIAL,mailID VARCHAR(50) PRIMARY KEY,password VARCHAR(30))',(error,result)=>{
