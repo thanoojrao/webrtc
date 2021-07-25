@@ -17,6 +17,7 @@ app.use(morgan('common'))
 app.use(express.urlencoded({extended:true,}))
 app.use(cookieParser())
 app.use(session({secret:"aKsrfghjkacvbnhg",
+                 store: new (require('connect-pg-simple')(session))(),
                  resave:true,
                 saveUninitialized:true}))
 
