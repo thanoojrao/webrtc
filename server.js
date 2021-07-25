@@ -26,9 +26,9 @@ app.use(session({secret:"aKsrfghjkacvbnhg",
 
 const peerServer = ExpressPeerServer(server, {
   debug: true,
-  path: '/myapp'
+  path: '/'
 })
-app.use('/peerjs', peerServer)
+app.use('/', peerServer)
 
 app.get('/createRoom',routes.createRoom)
 app.get('/',routes.checkSignIn,(req,res,next)=>{
