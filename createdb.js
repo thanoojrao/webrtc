@@ -11,7 +11,7 @@ pool.query('CREATE TABLE USERS(ID SERIAL,mailID VARCHAR(50) PRIMARY KEY,password
         throw error
     }
 })
-pool.query('CREATE TABLE ROOMS(ID CHAR(36) PRIMARY KEY,adminID INT,CONSTRAINT FK_AdminRoom FOREIGN KEY (adminID) REFERENCES USERS (ID))',(error,result)=>{
+pool.query('CREATE TABLE ROOMS(ID CHAR(36) PRIMARY KEY,adminID INT)',(error,result)=>{
     if(error){
         throw error
     }
