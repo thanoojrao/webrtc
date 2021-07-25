@@ -117,5 +117,6 @@ module.exports={
     checkSignIn,
     logoutUser,
     createRoom,
-    renderRoom
+    renderRoom,
+    pool
 }

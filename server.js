@@ -1,6 +1,7 @@
 const express = require('express')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
+const pgSession = require('connect-pg-simple')(session);
 const morgan = require('morgan')
 const routes = require('./db_queries')
 
@@ -18,7 +19,7 @@ app.use(express.urlencoded({extended:true,}))
 app.use(cookieParser())
 app.use(session({secret:"aKsrfghjkacvbnhg",
                  store: new pgSession({
-                  pool : pgPool,                // Connection pool
+                  pool : routes.pool,                // Connection pool
                   tableName : 'user_sessions'   // Use another table-name than the default "session" one
                 }),
                  resave:true,
