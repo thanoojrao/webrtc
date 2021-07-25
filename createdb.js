@@ -10,10 +10,10 @@ pool.query('CREATE TABLE USERS(ID SERIAL,mailID VARCHAR(50) PRIMARY KEY,password
     if(error){
         throw error
     }
-})
-pool.query('CREATE TABLE ROOMS(ID CHAR(36) PRIMARY KEY,adminID INT)',(error,result)=>{
-    if(error){
-        throw error
-    }
-    pool.end(console.log('pool ended successfully'))
+    pool.query('CREATE TABLE ROOMS(ID CHAR(36) PRIMARY KEY,adminID INT)',(error,result)=>{
+        if(error){
+            throw error
+        }
+        pool.end(console.log('pool ended successfully'))
+    })
 })
