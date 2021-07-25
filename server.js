@@ -16,7 +16,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true,}))
 app.use(cookieParser())
 app.use(session({secret:"aKsrfghjkacvbnhg",
-                 store: new pgStore({conString:dbUrl+'?sslmode=require'}),
+                 store: new pgStore({conString:dbUrl+'?ssl=true'}),
                  resave:true,
                 saveUninitialized:true}))
 
