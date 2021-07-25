@@ -23,9 +23,10 @@ app.use(session({secret:"aKsrfghjkacvbnhg",
                  resave:true,
                 saveUninitialized:true}))
 const peerServer = ExpressPeerServer(server, {
-        path: '/myapp'
-      })
-io.use(peerServer);
+                  path: '/myapp'
+                })
+                
+app.use('/peerjs', peerServer)
 
 
 
