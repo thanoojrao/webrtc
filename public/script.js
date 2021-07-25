@@ -1,7 +1,7 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 console.log(USER_ID)
-const myPeer = new Peer(USER_ID,{ host : 'jas-prj.herokuapp.com', port: 3000, path : '/' })
+const myPeer = new Peer(USER_ID,{ host : 'jas-prj.herokuapp.com', port: 3000, path : '/admin/peerjs' })
 const myVideo = document.createElement('video')
 myVideo.muted = true
 const peers = {}
