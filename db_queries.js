@@ -3,7 +3,6 @@ const dotenv = require('dotenv')
 const { v4: uuidV4 } = require('uuid')
 const Pool = require('pg').Pool
 
-dotenv.config()
 
 const pool = new Pool({
     connectionString:process.env.DATABASE_URL,
