@@ -2,15 +2,7 @@ const express = require('express')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
-const Pool = require('pg').Pool
 const routes = require('./db_queries')
-
-const pool = new Pool({
-  connectionString:process.env.DATABASE_URL,
-  ssl:{
-      rejectUnauthorized:false
-  }
-})
 const pgStore = require('connect-pg-simple')(session)
 
 
@@ -24,7 +16,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true,}))
 app.use(cookieParser())
 app.use(session({secret:"aKsrfghjkacvbnhg",
-                 store: new pgStore({conString:'postgres://webrtc:12345678@localhost:5432/webrtc'}),
+                 store: new pgStore({conString:dbUrl}),
                  resave:true,
                 saveUninitialized:true}))
 
