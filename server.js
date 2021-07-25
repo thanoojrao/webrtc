@@ -7,11 +7,7 @@ const pgStore = require('connect-pg-simple')(session)
 
 const { ExpressPeerServer } = require('peer');
 
-const peerServer = PeerServer({ port: 80, path: '/myapp' });
 
-const peerServer = ExpressPeerServer(server, {
-  path: '/myapp'
-});
 
 const app = express()
 const server = require('http').Server(app)
@@ -26,6 +22,9 @@ app.use(session({secret:"aKsrfghjkacvbnhg",
                  store: new pgStore({pool:routes.pool}),
                  resave:true,
                 saveUninitialized:true}))
+const peerServer = ExpressPeerServer(server, {
+        path: '/myapp'
+      })
 app.use('/peerjs', peerServer);
 
 
