@@ -4,7 +4,10 @@ const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const routes = require('./db_queries')
 const pgStore = require('connect-pg-simple')(session)
-var ExpressPeerServer = require('peer').ExpressPeerServer;
+const { ExpressPeerServer } = require('peer')
+
+
+
 
 
 const app = express()
@@ -21,7 +24,11 @@ app.use(session({secret:"aKsrfghjkacvbnhg",
                  resave:true,
                 saveUninitialized:true}))
 
-app.use('/admin/peerjs', ExpressPeerServer(server))
+const peerServer = ExpressPeerServer(server, {
+  debug: true,
+  path: '/'
+})
+app.use('/peerjs', peerServer)
 
 app.get('/createRoom',routes.createRoom)
 app.get('/',routes.checkSignIn,(req,res,next)=>{
