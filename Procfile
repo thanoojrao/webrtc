@@ -1,1 +1,1 @@
-web:npm start
+web:npm start & peerjs --port 443 wait -n
