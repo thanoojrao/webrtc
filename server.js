@@ -17,7 +17,10 @@ app.use(morgan('common'))
 app.use(express.urlencoded({extended:true,}))
 app.use(cookieParser())
 app.use(session({secret:"aKsrfghjkacvbnhg",
-                 store: new (require('connect-pg-simple')(session))(),
+                 store: new pgSession({
+                  pool : pgPool,                // Connection pool
+                  tableName : 'user_sessions'   // Use another table-name than the default "session" one
+                }),
                  resave:true,
                 saveUninitialized:true}))
 
