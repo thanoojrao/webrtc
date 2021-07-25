@@ -1,15 +1,9 @@
 const bcrypt = require('bcrypt')
 const dotenv = require('dotenv')
 const { v4: uuidV4 } = require('uuid')
-const Pool = require('pg').Pool
 
+dotenv.config()
 
-const pool = new Pool({
-    connectionString:process.env.DATABASE_URL,
-    ssl:{
-        rejectUnauthorized:false
-    }
-})
 
 const addUser = (req,res)=>{
     if(!req.body.id||!req.body.password){
@@ -117,5 +111,4 @@ module.exports={
     logoutUser,
     createRoom,
     renderRoom,
-    pool
 }

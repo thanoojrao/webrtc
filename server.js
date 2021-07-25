@@ -2,7 +2,15 @@ const express = require('express')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
+const Pool = require('pg').Pool
 const routes = require('./db_queries')
+
+const pool = new Pool({
+  connectionString:process.env.DATABASE_URL,
+  ssl:{
+      rejectUnauthorized:false
+  }
+})
 const pgStore = require('connect-pg-simple')(session)
 
 
