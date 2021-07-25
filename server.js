@@ -1,12 +1,9 @@
 const express = require('express')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
+const morgan = require('morgan')
 const routes = require('./db_queries')
 const pgStore = require('connect-pg-simple')(session)
-
-const { ExpressPeerServer } = require('peer');
-
-
 
 const app = express()
 const server = require('http').Server(app)
@@ -21,11 +18,6 @@ app.use(session({secret:"aKsrfghjkacvbnhg",
                  store: new pgStore({pool:routes.pool}),
                  resave:true,
                 saveUninitialized:true}))
-const peerServer = ExpressPeerServer(server, {
-                  path: '/myapp'
-                })
-
-app.use('/peerjs', peerServer)
 
 
 
