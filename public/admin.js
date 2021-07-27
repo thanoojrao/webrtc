@@ -1,11 +1,7 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 console.log(USER_ID)
-const myPeer = new Peer({ key: 'peerjs',
-host: 'https://9000-purple-opossum-ksdyv0tv.ws-us11.gitpod.io',
-port: 443,
-path: '/',
-secure: true,})
+const myPeer = new Peer(USER_ID)
 const myVideo = document.createElement('video')
 myVideo.muted = true
 const peers = {}
