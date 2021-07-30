@@ -8,22 +8,13 @@ html(lang='en')
       const ROOM_ID = "#{roomId}"
       const USER_ID = "#{userId}"
     script(defer='', src='https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js')
-    script(src='/socket.io/socket.io.js', defer)
+    script(src='/socket.io/socket.io.js', defer='')
     title Document
     style.
        #video-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, 300px);
       grid-auto-rows: 300px;
-      }
-      .usertile{
-          width:150px;
-          height:150px;
-          border-radius:5px;
-          background:black;
-          color:white;
-          font-size:24px;
-          overflow:hidden;
       }
       video {
       width: 100%;
@@ -32,5 +23,4 @@ html(lang='en')
       }
   body
     #video-grid
-    #sound
     script(src='admin.js', type='module')
