@@ -30,7 +30,7 @@ socket.on('broadcaster-info',broadcasterId=>{
   socket.emit('request-call',broadcasterId)  //request broadcaster to call
 })
 
-socket.on('user-disconnected', userId => {
+socket.on('user-disconnected', leftUserId => {
   // if (peers[userId]) peers[userId].close()
   console.log('user left',leftUserId)
 })

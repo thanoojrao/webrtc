@@ -32,9 +32,9 @@ navigator.mediaDevices.getUserMedia({
   })
 })
 
-socket.on('user-disconnected', userId => {
+socket.on('user-disconnected', leftUserId => {
   //if (peers[userId]) peers[userId].close()
-  console.log('user left',userId)
+  console.log('user left',leftUserId)
 })
 
 myPeer.on('open', id => {
