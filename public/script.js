@@ -12,7 +12,6 @@ navigator.mediaDevices.getUserMedia({
 
   myPeer.on('call', call => {
     call.answer()
-    console.log('recieved stream')
     const video = document.createElement('video')
     call.on('stream', userVideoStream => {
       addVideoStream(video, userVideoStream)
@@ -58,8 +57,10 @@ function connectToNewUser(userId, stream) {
 
 function addVideoStream(video, stream) {
   video.srcObject = stream
+  console.log('recieved stream')
   video.addEventListener('loadedmetadata', () => {
     video.play()
+    console.log('playing stream')
   })
   videoGrid.append(video)
 }
