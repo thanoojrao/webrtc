@@ -44,7 +44,7 @@ io.on('connection', socket => {
     socket.join(roomId)
     socket.to(roomId).broadcast.emit('user-connected', userId)
     socket.on('broadcaster-joined',()=>{
-      socket.to(roomId).broadcast.emit('broadcaster-info', userId)
+      socket.to(roomId).broadcast.emit('broadcaster-info', socket.id)
     })
     socket.on('facedata',(msg)=>{
       console.log(`${userId}`)
