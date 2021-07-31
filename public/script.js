@@ -12,6 +12,7 @@ navigator.mediaDevices.getUserMedia({
 
   myPeer.on('call', call => {
     call.answer()
+    console.log('recieved stream')
     const video = document.createElement('video')
     call.on('stream', userVideoStream => {
       addVideoStream(video, userVideoStream)
@@ -25,6 +26,7 @@ navigator.mediaDevices.getUserMedia({
 })
 // things to do as i recieve broadcasters info or a broadcaster is joined
 socket.on('broadcaster-info',broadcasterId=>{
+  console.log('got info from broadcaster')
   socket.emit('request-call',broadcasterId)  //request broadcaster to call
 })
 
@@ -35,6 +37,7 @@ socket.on('user-disconnected', userId => {
 
 myPeer.on('open', id => {
   socket.emit('join-room', ROOM_ID, id)
+  console.log('u joined room')
 })
 
 /*
