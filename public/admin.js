@@ -4,7 +4,6 @@ const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(USER_ID)
 const myVideo = document.createElement('video')
 myVideo.muted = true
-const peers = {}
 //send that i joined to all students who already joined
 socket.emit('broadcaster-info')
 navigator.mediaDevices.getUserMedia({
@@ -21,7 +20,7 @@ navigator.mediaDevices.getUserMedia({
     })
   })
 */
-
+  console.log(USER_ID)
   //call students who joined before me
   socket.on('request-call',remoteId=>{
     connectToNewUser(userId, stream)
