@@ -1,15 +1,17 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
-console.log(USER_ID)
 const myPeer = new Peer(USER_ID)
 const myVideo = document.createElement('video')
 myVideo.muted = true
 const peers = {}
+//send that i joined to all students who already joined
+socket.emit('broadcaster-info')
 navigator.mediaDevices.getUserMedia({
   video: true,
   audio: true
 }).then(stream => {
-  addVideoStream(myVideo,stream)
+  addVideoStream(myVideo, stream)
+/*
   myPeer.on('call', call => {
     call.answer(stream)
     const video = document.createElement('video')
@@ -17,19 +19,29 @@ navigator.mediaDevices.getUserMedia({
       addVideoStream(video, userVideoStream)
     })
   })
+*/
+
+  //call students who joined before me
+  socket.on('request-call',remoteId=>{
+    connectToNewUser(userId, stream)
+  })
+  //call student if joined after me
   socket.on('user-connected', userId => {
-    const fc = () => connectToNewUser(userId, stream)
-    let timerid = setTimeout(fc, 1000 )
-    })
+    connectToNewUser(userId, stream)
+  })
 })
+
 socket.on('user-disconnected', userId => {
-  if (peers[userId]) peers[userId].close();
+  if (peers[userId]) peers[userId].close()
 })
+
 myPeer.on('open', id => {
   socket.emit('join-room', ROOM_ID, id)
 })
+
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream)
+  /*
   const video = document.createElement('video')
   call.on('stream', userVideoStream => {
     addVideoStream(video, userVideoStream)
@@ -37,7 +49,7 @@ function connectToNewUser(userId, stream) {
   call.on('close', () => {
     video.remove()
   })
-
+  */
   peers[userId] = call
 }
 
@@ -48,6 +60,4 @@ function addVideoStream(video, stream) {
   })
   videoGrid.append(video)
 }
-
-
 
