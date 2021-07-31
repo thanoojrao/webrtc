@@ -1,3 +1,4 @@
+
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(USER_ID)
@@ -27,16 +28,19 @@ navigator.mediaDevices.getUserMedia({
   })
   //call student if joined after me
   socket.on('user-connected', userId => {
-    connectToNewUser(userId, stream)
+    //connectToNewUser(userId, stream)
+    console.log('user joined',userId)
   })
 })
 
 socket.on('user-disconnected', userId => {
-  if (peers[userId]) peers[userId].close()
+  //if (peers[userId]) peers[userId].close()
+  console.log('user left',userId)
 })
 
 myPeer.on('open', id => {
   socket.emit('join-room', ROOM_ID, id)
+  console.log('u joined room')
 })
 
 function connectToNewUser(userId, stream) {
