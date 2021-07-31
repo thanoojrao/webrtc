@@ -28,8 +28,8 @@ navigator.mediaDevices.getUserMedia({
   })
   //call student if joined after me
   socket.on('user-connected', userId => {
-    //connectToNewUser(userId, stream)
-    console.log('user joined',userId)
+    connectToNewUser(userId, stream)
+    console.log('connecting to user',userId)
   })
 })
 
