@@ -22,7 +22,7 @@ app.use(session({secret:"aKsrfghjkacvbnhg",
 
 app.get('/createRoom',routes.createRoom)
 app.get('/',routes.checkSignIn,(req,res,next)=>{
-  res.render('protected_page', {id: req.session.user.mailid})
+  res.render('landing', {id: req.session.user.mailid})
 })
 app.get('/login',(req,res)=>{
   res.render('login')
