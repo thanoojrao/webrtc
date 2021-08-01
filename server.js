@@ -33,7 +33,7 @@ app.get('/signup',(req,res)=>{
 })
 app.post('/login',routes.signinUser)
 app.post('/signup',routes.addUser)
-
+app.get('/logout',routes.logoutUser)
 app.get('/:room',routes.checkSignIn ,routes.renderRoom)
 app.use('/', function(err, req, res, next){
   console.log(err);
