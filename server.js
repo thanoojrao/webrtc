@@ -25,8 +25,7 @@ app.get('/',routes.checkSignIn,(req,res,next)=>{
   res.render('landing', {id: req.session.user.mailid})
 })
 app.get('/login',(req,res)=>{
-  var passedVariable = req.query.valid
-  res.render('login',{status:passedVariable})
+  res.render('login')
 })
 app.get('/signup',(req,res)=>{
   res.render('signup')
