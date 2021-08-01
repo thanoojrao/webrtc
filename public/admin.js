@@ -22,20 +22,20 @@ navigator.mediaDevices.getUserMedia({
 */
   console.log(USER_ID)
   //call students who joined before me
-  socket.on('request-call',remoteId=>{
-    setTimeout((remoteId,stream)=>{
-      connectToNewUser(remoteId, stream)
-      console.log('connecting to new user',remoteId)
-      }, 1000 )
+  socket.on('request-call',userId=>{
+    console.log('New User Connected: ' + userId)
+    const fc = () => connectToNewUser(userId, stream)
+    timerid = setTimeout(fc, 1000 )
+
   })
   //call student if joined after me
-  socket.on('user-connected', remoteId => {
-   setTimeout((remoteId,stream)=>{
-    connectToNewUser(remoteId, stream)
-    console.log('connecting to user joined after u',remoteId)
-    }, 1000 )
-  })
-})
+  socket.on('user-connected', userId => {
+    console.log('New User Connected after u: ' + userId)
+    const fc = () => connectToNewUser(userId, stream)
+    timerid = setTimeout(fc, 1000 )
+    })
+    })
+
 
 socket.on('user-disconnected', leftUserId => {
   //if (peers[userId]) peers[userId].close()
