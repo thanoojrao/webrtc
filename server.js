@@ -9,7 +9,7 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const dbUrl = process.env.DATABASE_URL
 app.set('view engine', 'pug')
-app.use(express.static('public'))
+app.use(express.static(__dirname+'/public'))
 app.use(express.json())
 app.use(express.urlencoded({extended:true,}))
 app.use(cookieParser())
