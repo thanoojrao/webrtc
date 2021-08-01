@@ -55,12 +55,12 @@ const signinUser = (req,res)=>{
                 res.redirect('/')
             }
             else{
-                res.render('login_invalid')
+                res.redirect('/login')
             }
         })
         }
     else{
-        res.render('login_invalid')
+        res.redirect('/login')
     }})
     }
 }
