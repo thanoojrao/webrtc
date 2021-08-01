@@ -3,6 +3,7 @@ const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined)
 const myVideo = document.createElement('video')
+let timerid
 myVideo.muted = true
 //send that i joined to all students who already joined
 socket.emit('broadcaster-info')
@@ -22,20 +23,16 @@ navigator.mediaDevices.getUserMedia({
 */
   console.log(USER_ID)
   //call students who joined before me
-  socket.on('request-call',userId=>{
-    console.log('New User Connected: ' + userId)
+  socket.on('request-call',remoteId=>{
     const fc = () => connectToNewUser(userId, stream)
     timerid = setTimeout(fc, 1000 )
-
   })
   //call student if joined after me
   socket.on('user-connected', userId => {
-    console.log('New User Connected after u: ' + userId)
-    const fc = () => connectToNewUser(userId, stream)
-    timerid = setTimeout(fc, 1000 )
-    })
-    })
-
+    connectToNewUser(userId, stream)
+    console.log('connecting to user',userId)
+  })
+})
 
 socket.on('user-disconnected', leftUserId => {
   //if (peers[userId]) peers[userId].close()
