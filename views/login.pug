@@ -1,49 +1,66 @@
 doctype html
 head
-  meta(charset='utf-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
-  meta(name='description' content='')
-  meta(name='author' content='')
-  title LookOut
-  // Favicon
-  link(rel='icon' type='image/x-icon' href='assets/favicon.ico')
-  // Bootstrap Icons
-  link(href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css' rel='stylesheet')
-  // Google fonts
-  link(href='https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700' rel='stylesheet')
-  link(href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css')
-  // SimpleLightbox plugin CSS
-  link(href='https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css' rel='stylesheet')
-  // Core theme CSS (includes Bootstrap)
-  link(href='css/login.css' rel='stylesheet')
-section.h-100.gradient-form(style='background-color: #eee;')
-  .container.py-5.h-100
-    .row.d-flex.justify-content-center.align-items-center.h-100
-      .col-xl-10
-        .card.rounded-3.text-black
-          .row.g-0
-            .col-lg-6
-              .card-body.p-md-5.mx-md-4
-                .text-center
-                  img(src='https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/lotus.png' style='width: 185px;' alt='logo')
-                  h4.mt-1.mb-5.pb-1 We are The Team LookOut
-                form(action = "/login" method = "POST")
-                  p#loginError Please login to your account
-                  .form-outline.mb-4
-                    input#form2Example11.form-control(type='email' name='id' placeholder='email address')
-                    label.form-label(for='form2Example11') Username
-                  .form-outline.mb-4
-                    input#form2Example22.form-control(type='password' name='password')
-                    label.form-label(for='form2Example22') Password
-                  .text-center.pt-1.mb-5.pb-1
-                    button.btn.btn-primary.btn-block.fa-lg.gradient-custom-2.mb-3(type='submit') Log in
-                    a.text-muted(href='#!') Forgot password?
-                  .d-flex.align-items-center.justify-content-center.pb-4
-                    p.mb-0.me-2 Don&apos;t have an account?
-                    form(action="/signup", method="get") 
-                     button.btn.btn-outline-danger(type='submit') Create new
-            .col-lg-6.d-flex.align-items-center.gradient-custom-2
-              .text-white.px-3.py-4.p-md-5.mx-md-4
-                h4.mb-4 We are more than just a company
-                p.small.mb-0
-                  | At LookOut your Security is our First Priority.
+  title Login V1
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  // ===============================================================================================
+  link(rel='icon' type='image/png' href='login/images/icons/favicon.ico')
+  // ===============================================================================================
+  link(rel='stylesheet' type='text/css' href='login/vendor/bootstrap/css/bootstrap.min.css')
+  // ===============================================================================================
+  link(rel='stylesheet' type='text/css' href='login/fonts/font-awesome-4.7.0/css/font-awesome.min.css')
+  // ===============================================================================================
+  link(rel='stylesheet' type='text/css' href='login/vendor/animate/animate.css')
+  // ===============================================================================================
+  link(rel='stylesheet' type='text/css' href='login/vendor/css-hamburgers/hamburgers.min.css')
+  // ===============================================================================================
+  link(rel='stylesheet' type='text/css' href='login/vendor/select2/select2.min.css')
+  // ===============================================================================================
+  link(rel='stylesheet' type='text/css' href='login/css/util.css')
+  link(rel='stylesheet' type='text/css' href='login/css/main.css')
+  // ===============================================================================================
+.limiter
+  .container-login100
+    .wrap-login100
+      .login100-pic.js-tilt(data-tilt='')
+        img(src='login/images/img-01.png' alt='IMG')
+      form.login100-form.validate-form(method='post' action='/')
+        span.login100-form-title
+          | Member Login
+        .wrap-input100.validate-input(data-validate='Valid email is required: ex@abc.xyz')
+          input.input100(type='text' name='email' placeholder='Email')
+          span.focus-input100
+          span.symbol-input100
+            i.fa.fa-envelope(aria-hidden='true')
+        .wrap-input100.validate-input(data-validate='Password is required')
+          input.input100(type='password' name='pass' placeholder='Password')
+          span.focus-input100
+          span.symbol-input100
+            i.fa.fa-lock(aria-hidden='true')
+        .container-login100-form-btn
+          button.login100-form-btn
+            | Login
+        .text-center.p-t-12
+          span.txt1
+            | Forgot
+          a.txt2(href='#')
+            | Username / Password?
+        .text-center.p-t-136
+          a.txt2(href='#')
+            | Create your Account
+            i.fa.fa-long-arrow-right.m-l-5(aria-hidden='true')
+// ===============================================================================================
+script(src='login/vendor/jquery/jquery-3.2.1.min.js')
+// ===============================================================================================
+script(src='login/vendor/bootstrap/js/popper.js')
+script(src='login/vendor/bootstrap/js/bootstrap.min.js')
+// ===============================================================================================
+script(src='login/vendor/select2/select2.min.js')
+// ===============================================================================================
+script(src='login/vendor/tilt/tilt.jquery.min.js')
+script.
+  $('.js-tilt').tilt({
+  scale: 1.1
+  })
+// ===============================================================================================
+script(src='login/js/main.js')
