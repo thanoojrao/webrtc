@@ -23,14 +23,14 @@ navigator.mediaDevices.getUserMedia({
   console.log(USER_ID)
   //call students who joined before me
   socket.on('request-call',remoteId=>{
-    timerid = setTimeout((remoteId,stream)=>{
+    setTimeout((remoteId,stream)=>{
       connectToNewUser(remoteId, stream)
       console.log('connecting to new user',remoteId)
       }, 1000 )
   })
   //call student if joined after me
   socket.on('user-connected', remoteId => {
-    timerid = setTimeout((remoteId,stream)=>{
+   setTimeout((remoteId,stream)=>{
     connectToNewUser(remoteId, stream)
     console.log('connecting to user joined after u',remoteId)
     }, 1000 )
