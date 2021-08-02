@@ -34,6 +34,7 @@ navigator.mediaDevices.getUserMedia({
 })
 socket.on('facedata',(id,info)=>{
   const alert = document.getElementById(id).getElementsByClassName('alert')[0]
+  console.log('user data',id,info)
   if(info==0){
   alert.innerHTML = ''
   }
