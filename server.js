@@ -50,9 +50,8 @@ io.on('connection', socket => {
     socket.on('request-call',(broadcasterId,username)=>{
       socket.to(broadcasterId).emit('request-call',socket.id,username)
     })
-    socket.on('facedata',(msg)=>{
-      console.log(`${userId}`)
-      console.log(msg)
+    socket.on('facedata',(broadcasterId,msg)=>{
+      socket.to(broadcasterId).emit('facedata',socket.id,msg)
     })
     socket.on('disconnect', () => {
       socket.to(roomId).broadcast.emit('user-disconnected', userId)

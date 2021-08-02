@@ -32,7 +32,15 @@ navigator.mediaDevices.getUserMedia({
     console.log('connecting to user',username)
   })
 })
-
+socket.on('facedata',(id,info)=>{
+  const alert = document.getElementById(id).getElementsByClassName('alert')[0]
+  if(info==0){
+  alert.innerHTML = ''
+  }
+  else{
+    alert.innerHTML = 'no User'
+  }
+})
 socket.on('user-disconnected', leftUserId => {
   //if (peers[userId]) peers[userId].close()
   console.log('user left',leftUserId)
@@ -72,7 +80,10 @@ function addUser(id,username){
   userTile.className='usertile'
   const p = document.createElement('p')
   const text = document.createTextNode(username)
+  const userdata = document.createElement('p')
+  userdata.className = 'alert'
   p.appendChild(text)
   userTile.appendChild(p)
+  userTile.appendChild(userdata)
   videoGrid.append(userTile)
 }
