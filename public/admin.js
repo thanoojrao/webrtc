@@ -22,14 +22,14 @@ navigator.mediaDevices.getUserMedia({
 */
   console.log(USER_ID)
   //call students who joined before me
-  socket.on('request-call',remoteId=>{
-    connectToNewUser(remoteId, stream)
-    console.log('connecting to user',userId)
+  socket.on('request-call',(remoteId,username)=>{
+    connectToNewUser(remoteId,username, stream)
+    console.log('connecting to user',username)
   })
   //call student if joined after me
-  socket.on('user-connected', userId => {
-    connectToNewUser(userId, stream)
-    console.log('connecting to user',userId)
+  socket.on('user-connected', (userId,username) => {
+    connectToNewUser(userId,username, stream)
+    console.log('connecting to user',username)
   })
 })
 
@@ -43,8 +43,9 @@ myPeer.on('open', id => {
   console.log('u joined room')
 })
 
-function connectToNewUser(userId, stream) {
+function connectToNewUser(userId,username,stream) {
   const call = myPeer.call(userId, stream)
+  addUser(userId,username)
   /*
   const video = document.createElement('video')
   call.on('stream', userVideoStream => {
@@ -64,4 +65,14 @@ function addVideoStream(video, stream) {
   })
   videoGrid.append(video)
 }
-
+function addUser(id,username){
+  const userTile = document.createElement('div')
+  userTile.className = 'usertile'
+  userTile.id = `${id}`
+  userTile.className='usertile'
+  const p = document.createElement('p')
+  const text = document.createTextNode(username)
+  p.appendChild(text)
+  userTile.appendChild(p)
+  videoGrid.append(userTile)
+}

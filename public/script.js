@@ -18,15 +18,15 @@ navigator.mediaDevices.getUserMedia({
     })
   })
 
-  socket.on('user-connected', userId => {
+  socket.on('user-connected', (userId,username) => {
     //connectToNewUser(userId, stream)
-    console.log('new user joined ',userId)
+    console.log('new user joined ',username)
   })
 })
 // things to do as i recieve broadcasters info or a broadcaster is joined
 socket.on('broadcaster-info',broadcasterId=>{
   console.log('got info from broadcaster')
-  socket.emit('request-call',broadcasterId)  //request broadcaster to call
+  socket.emit('request-call',broadcasterId,USER_ID)  //request broadcaster to call
 })
 
 socket.on('user-disconnected', leftUserId => {
@@ -35,7 +35,7 @@ socket.on('user-disconnected', leftUserId => {
 })
 
 myPeer.on('open', id => {
-  socket.emit('join-room', ROOM_ID, id)
+  socket.emit('join-room', ROOM_ID, id,USER_ID)
   console.log('u joined room')
 })
 

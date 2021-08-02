@@ -41,11 +41,14 @@ app.use('/', function(err, req, res, next){
      res.redirect('/login');
   });
 io.on('connection', socket => {
-  socket.on('join-room', (roomId, userId) => {
+  socket.on('join-room', (roomId, userId,username) => {
     socket.join(roomId)
-    socket.to(roomId).broadcast.emit('user-connected', userId)
+    socket.to(roomId).broadcast.emit('user-connected', userId,username)
     socket.on('broadcaster-joined',()=>{
       socket.to(roomId).broadcast.emit('broadcaster-info', socket.id)
+    })
+    socket.on('request-call',(broadcasterId,username)=>{
+      socket.to(broadcasterId).emit('request-call',socket.id,username)
     })
     socket.on('facedata',(msg)=>{
       console.log(`${userId}`)

@@ -11,17 +11,29 @@ html(lang='en')
     script(src='/socket.io/socket.io.js', defer='')
     title Document
     style.
-       #video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 300px);
-      grid-auto-rows: 300px;
+      #video-grid {
+            /* Define the element as a grid container */
+            display: grid;
+            /* Auto-fit as many items on a row as possible without going under 180px */
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            /* A little spacing between articles */
+            grid-gap: 1em;
+            }
+      .usertile{
+        background-color: gray;
+        border-radius: 5px;
       }
       video {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      text-align: center;
       }
   body
-    h3 admin
     #video-grid
+    script(src='/loginPublic/vendor/jquery/jquery-3.2.1.min.js')
+    // ===============================================================================================
+    script(src='/loginPublic/vendor/bootstrap/js/popper.js')
+    script(src='/loginPublic/vendor/bootstrap/js/bootstrap.min.js')
+    // ===============================================================================================
     script(src='admin.js', type='module')
