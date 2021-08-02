@@ -33,13 +33,13 @@ navigator.mediaDevices.getUserMedia({
   })
 })
 socket.on('facedata',(id,info)=>{
-  const alert = document.getElementById(id).getElementsByClassName('alert')[0]
+  const alertText = document.getElementById(id).getElementsByClassName('alert')[0]
   console.log('user data',id,info)
   if(info==0){
-  alert.innerHTML = ''
+  alertText.innerHTML = ''
   }
   else{
-    alert.innerHTML = 'no User'
+    alertText.innerHTML = 'no User'
   }
 })
 socket.on('user-disconnected', leftUserId => {
